@@ -1,7 +1,9 @@
 import numpy as np
 import tensorflow as tf
 
-def encoder(X):
+num_classes = 20
+
+def encode(X):
 
     with tf.name_scope("rectangle1"):
         with tf.name_scope("input_layer"):
@@ -247,6 +249,17 @@ def encoder(X):
                 padding="same",
                 activation=tf.nn.relu
             )
+        with tf.name_scope("logits"):
+            logits = tf.layers.conv2d(
+                rect9_conv2,
+                filters=num_classes,
+                kernel_size=[1, 1],
+                strides=1,
+                padding="same",
+                activation=tf.nn.relu
+            )
+
+    return logits
 
 
 
