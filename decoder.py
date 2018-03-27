@@ -15,9 +15,9 @@ def decode(X):
                 padding="same",
                 activation=tf.nn.relu
             )
-        with tf.name_scope("batch_normalization1"):
-            mean, variance = tf.nn.moments(rect1_conv1, [0, 1, 2])
-            normalized_conv1 = tf.nn.batch_normalization(rect1_conv1, mean, variance)
+        # with tf.name_scope("batch_normalization1"):
+        #     mean, variance = tf.nn.moments(rect1_conv1, [0, 1, 2])
+        #     normalized_conv1 = tf.nn.batch_normalization(rect1_conv1, mean, variance)
         with tf.name_scope("conv2"):
             rect1_conv2 = tf.layers.conv2d(
                 rect1_conv1,
@@ -88,7 +88,7 @@ def decode(X):
                 rect3_conv2,
                 pool_size=[2, 2],
                 strides=2,
-                padding="vaild"
+                padding="valid"
             )
         with tf.name_scope("conv1"):
             rect4_conv1 = tf.layers.conv2d(
