@@ -3,7 +3,7 @@ from os import listdir
 import numpy as np
 
 file_path = "data/VOC2012/JPEGImages/"
-batch_size = 64
+batch_size = 128 
 
 def parse_image(filename):
     image_string = tf.read_file(file_path + filename)

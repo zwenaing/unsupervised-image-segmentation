@@ -9,9 +9,9 @@ from input_data import input_data
 logdir = "checkpoints/model.ckpt"
 
 # network parameters
-learning_rate = 0.01
+learning_rate = 0.0001
 num_steps = 1000
-display_step = 10
+display_step = 1
 
 X = tf.placeholder(tf.float32, [None, 224, 224, None])
 
@@ -22,9 +22,10 @@ with tf.name_scope("Decoding"):
     decoded_image = decode(encoded_image)
 
 with tf.name_scope("Loss"):
-    y_pred = decoded_image
-    y_true = X
-    loss = tf.reduce_mean(tf.pow(y_pred, y_true), 2)
+    y_pred = tf.reshape(decoded_image, [-1, 150528])
+    y_true = tf.reshape(X, [-1, 150528])
+
+    loss = tf.reduce_mean(tf.pow(y_pred - y_true, 2))
 
 with tf.name_scope("Optimization"):
     optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
