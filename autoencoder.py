@@ -15,7 +15,7 @@ display_step = 1
 
 global_step = 0
 
-X = tf.placeholder(tf.float32, [None, 224, 224, None])
+X = tf.placeholder(tf.float32, [None, 224, 224, 3])
 
 with tf.name_scope("Encoding"):
     encoded_image = encode(X)
@@ -43,8 +43,8 @@ with tf.Session() as sess:
     sess.run(init)
     train_writer = tf.summary.FileWriter(logdir, graph=tf.get_default_graph())
 
-    if exists(logdir):
-        saver.restore(sess, logdir)
+    # if exists(logdir):
+    #     saver.restore(sess, logdir)
     iterator = input_data()
 
     for i in range(num_steps + 1):
