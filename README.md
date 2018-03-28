@@ -1,2 +1,2 @@
-# dm-project
-The unsupervised image segmentation for Data Mining class
+# unsupervised-image-segmentation
+Unsupervised Image Segmentation using WNet
